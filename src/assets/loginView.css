@@ -1,0 +1,87 @@
+body{
+
+    height: 100vh;
+
+}
+#root{
+    height: 100%;
+    align-content: center;
+    backdrop-filter: blur(50px);
+    position: relative;
+
+}
+
+.login-container{
+
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* max-width: 520px; */
+    width: 50%;
+    margin:0 auto;
+    /* margin-top:3% ; */
+    align-items: stretch;
+    min-width: 425px;
+}
+
+.login{
+    border-top-left-radius: 37px;
+    border-bottom-left-radius: 37px;
+    background-color: white;
+    padding:7% 5%;
+    border-left:solid 2px mediumseagreen;
+    border-bottom:solid 2px mediumseagreen;
+    border-top:solid 2px mediumseagreen;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.388) ;
+    position: relative;
+    z-index: 3;
+}
+.sidebar{
+
+    width: 15%;
+    border-top-right-radius: 37px;
+    border-bottom-right-radius: 37px;
+    background-image: url('heroimg.jpeg') ;
+    position: relative;
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center ;
+   
+    
+    
+}
+.overlayer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    backdrop-filter: blur(3px);
+    width: 100%;
+    height: 100%;
+    
+    border-top-right-radius: 37px;
+    border-bottom-right-radius: 37px;
+    /* padding: 0 1.5rem; DONOT */
+}
+
+.log2sign{
+    width: 70%;
+   position: absolute;
+   bottom: .5rem; 
+   color: mediumseagreen;
+   background-color: white;
+   border-bottom-right-radius: 37px;
+   font-size: .8rem;
+   padding: 5%;
+   font-weight: 700;
+   transition: all 200ms ease-in-out;
+   align-self: center;
+   z-index: 3;
+}
+.log2sign:hover{
+    cursor:default;
+    background-color: rgba(255, 255, 255, 0.881);
+    color: black;
+}
