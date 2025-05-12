@@ -1,4 +1,4 @@
-.signupform{
+.signupform,.loginform {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -41,16 +41,7 @@ input[type='submit']:hover{
 }
 
 input[type='submit']:disabled{
-    background-color: gray;
+    background-color: rgb(180, 180, 180);
+    border: 1px solid mediumseagreen;
 
-}
-.is-invalid{
-    border: darkred solid 1.2px !important;
-    background-color:rgba(240, 128, 128, 0.32)!important;
-    transition: background 200ms ease-in-out;
-}
-.is-valid{
-    border: rgb(0, 139, 86) solid 1.2px!important;
-    background-color: rgba(144, 238, 208, 0.365) !important;
-    transition: background 200ms ease-in-out;
 }

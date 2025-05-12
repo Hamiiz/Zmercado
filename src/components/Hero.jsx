@@ -16,11 +16,11 @@ export default function Hero() {
           <h1 className="text-red">ZMERCADO</h1>
           <p>Zapping deals</p>
           <div className="heroBtns">
-            <NavLink className="btn1" to={'/Signup'}>
+            <NavLink className="btn1" to={'/auth/signup'}>
             SignUp
               
             </NavLink>
-            <NavLink className="btn2" to={'/login'}>
+            <NavLink className="btn2" to={'/auth/login'}>
             SignIn
 
             </NavLink>

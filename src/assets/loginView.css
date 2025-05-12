@@ -29,7 +29,7 @@ body{
     border-top-left-radius: 37px;
     border-bottom-left-radius: 37px;
     background-color: white;
-    padding:7% 5%;
+    padding:5% 5%;
     border-left:solid 2px mediumseagreen;
     border-bottom:solid 2px mediumseagreen;
     border-top:solid 2px mediumseagreen;
@@ -42,7 +42,7 @@ body{
     width: 15%;
     border-top-right-radius: 37px;
     border-bottom-right-radius: 37px;
-    background-image: url('heroimg.jpeg') ;
+    background-image: url('/heroimg.jpeg') ;
     position: relative;
     background-size:cover;
     background-repeat: no-repeat;

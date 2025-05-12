@@ -12,16 +12,23 @@ const router = createBrowserRouter([
         
     },
     {
-        path:'/login'
-        ,Component:Login,
-        action:LoginAction
-    }
-    ,
-    {
-        path:'/signup'
-        ,Component:SignUp,
-        action:SignupAction,
-        
-    }
+        path:'/auth',
+        children:[
+                
+            {
+                path:'/auth/login'
+                ,Component:Login,
+                action:LoginAction
+            }
+            ,
+            {
+                path:'/auth/signup'
+                ,Component:SignUp,
+                action:SignupAction,
+              
+                
+            }
+        ]
+    },
 ])
 export default router
