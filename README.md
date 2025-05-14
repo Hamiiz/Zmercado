@@ -7,8 +7,6 @@ This is a React application built with Vite and Tailwind CSS. It demonstrates th
 
 - **React Router**: For navigation between pages.
 - **Tailwind CSS**: For modern and responsive styling.
-- **Custom Components**: Reusable components like `Hero`, `CustomButton`, and more.
-- **Dynamic State Management**: Example with `Cart` component.
 
 ## Project Structure
 

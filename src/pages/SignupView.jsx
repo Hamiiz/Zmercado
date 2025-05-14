@@ -3,8 +3,9 @@ import Form from "../components/Form";
 import Auths from "../components/authLinks";
 import Copyright from "../components/copyright";
 import { LogOrSign } from "./loginView";
-import { useFetcher } from "react-router-dom";
+import { useFetcher, } from "react-router-dom";
 import { useEffect,useState,useRef } from "react";
+
 
 
 export default function SignUp() {
@@ -49,18 +50,7 @@ export default function SignUp() {
 
   },[username])
 
-    useEffect(()=>{
 
-      if(fetcher.data == undefined){
-          ''
-      }
-      else if(fetcher.data.isLogged) {
-          console.log(fetcher.data)
-          console.info('successful signup')
-
-      }
-
-  },[fetcher.data])
 
 
 
@@ -89,6 +79,7 @@ export default function SignUp() {
               name="username"
               required
             />
+            {errors?.username&&<p style={{margin:0,color:'red',marginRight:'auto'}}>{errors?.username}</p>}
             {usernameStatus=='taken'&&<p style={{margin:0,color:'red',marginRight:'auto'}}>{username} is taken!</p>}
 
             <input

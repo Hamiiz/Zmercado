@@ -1,5 +1,4 @@
 import "../assets/loginView.css";
-import {  useEffect } from "react";
 import { NavLink, useFetcher } from "react-router-dom";
 import Form from "../components/Form";
 import Auths from "../components/authLinks";
@@ -10,16 +9,6 @@ export default function Login() {
   let errors = fetcher.data?.errors 
 
 
-  useEffect(()=>{
-
-      if(fetcher.data == undefined){
-          ''
-      }
-      else if(fetcher.data.isLogged) {
-          console.info('successful signup')
-      }
-
-  },[fetcher.data])
 
   return (
     <section className="login-container">

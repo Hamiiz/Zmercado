@@ -1,3 +1,5 @@
+import { redirect } from "react-router"
+import { authClient } from "../utils/authClient"
 export default async function LoginAction ({request}) {
     let formData = await request.formData()
     let emailRusername = formData.get('username')
@@ -21,26 +23,59 @@ export default async function LoginAction ({request}) {
         return{errors:errors,status:400}
     }
 
-
     if (isEmail){
-        //check password here
-        if(email=='hm@mh.com'){
-            errors.username = 'have entered invalid email!'
+
+        const { data, error } = await authClient.signIn.email({
+    
+            email:email,
+            password:password,
+            /**
+             * remember the user session after the browser is closed. 
+             * @default true
+             */
+            rememberMe: false
+            }, {
+                onError:(ctx)=>{
+                    console.error(ctx)
+                },
+                onSuccess:(ctx)=>{
+                    console.info(ctx)
+                }
+        })
+        if(error){
+            errors.signIn = error.message
+            return{errors}
+        }else{
+            console.info(`successful SignIn ${data.user.email} `)
+            return redirect('/')
         }
-        if (password == 'popopopo' ){
-            errors.password= 'incorrect password entered'
+    } else{
+        const { data, error } = await authClient.signIn.username({
+    
+            username:username,
+            password:password,
+            /**
+             * remember the user session after the browser is closed. 
+             * @default true
+             */
+            rememberMe: false
+            }, {
+                onError:(ctx)=>{
+                    console.error(ctx)
+                },
+                onSuccess:(ctx)=>{
+                    console.info(ctx)
+                }
+        })
+        if(error){
+            errors.signIn = error.message
+            return{errors}
+        }else{
+            console.info(`successful SignIn ${data.user.email} `)
+            return redirect('/')
         }
-    }else{
-        //check password here
-        
     }
-
-
-    if(checkObjectLength(errors)>0){
-        return{errors:errors,status:400}
-    }
-
-    return{isLogged:true,username:username,email:email}
+    
 
 
 }
