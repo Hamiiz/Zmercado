@@ -1,5 +1,7 @@
 import { redirect } from "react-router"
 import { authClient } from "../utils/authClient"
+// eslint-disable-next-line no-unused-vars
+import axios from "axios" // eslint-ignore
 export default async function LoginAction ({request}) {
     let formData = await request.formData()
     let emailRusername = formData.get('username')
@@ -15,13 +17,11 @@ export default async function LoginAction ({request}) {
     } else if (emailRusername?.length>0&& !emailRusername?.includes('@')){
         username=emailRusername
     }else{
-        errors.username='No Email or username entered';
+        errors.message='No Email or username entered';
+        return {errors}
         
     }
 
-    if(checkObjectLength(errors)>0){
-        return{errors:errors,status:400}
-    }
 
     if (isEmail){
 
@@ -35,15 +35,10 @@ export default async function LoginAction ({request}) {
              */
             rememberMe: false
             }, {
-                onError:(ctx)=>{
-                    console.error(ctx)
-                },
-                onSuccess:(ctx)=>{
-                    console.info(ctx)
-                }
+              
         })
         if(error){
-            errors.signIn = error.message
+            errors.message = error.message
             return{errors}
         }else{
             console.info(`successful SignIn ${data.user.email} `)
@@ -60,17 +55,33 @@ export default async function LoginAction ({request}) {
              */
             rememberMe: false
             }, {
-                onError:(ctx)=>{
-                    console.error(ctx)
-                },
-                onSuccess:(ctx)=>{
-                    console.info(ctx)
-                }
+              
         })
         if(error){
-            errors.signIn = error.message
+            errors.message = error.message
             return{errors}
         }else{
+            console.log(data)
+            // try {
+                
+            //     let tokenData = await axios.get("http://localhost:1000/auth/token",{
+            //      withCredentials:true
+            //     })
+            //     // let token = tokenData.data
+                
+            //     // let response = await axios.get("http://localhost:1000/getuser",{
+            //     // headers:{
+            //     //     "Authorization":`Bearer ${token.token}`,
+                    
+            //     // }    ,
+            //     //  withCredentials:true
+            //     // })
+            // }catch (err){
+            //     errors.message = err
+            //     return {errors}
+            // }
+            // const accounts = await authClient.listAccounts();
+            // console.log(accounts)
             console.info(`successful SignIn ${data.user.email} `)
             return redirect('/')
         }
@@ -79,8 +90,6 @@ export default async function LoginAction ({request}) {
 
 
 }
-function checkObjectLength(object){
-    return Object.keys(object).length
-}
+
 
     

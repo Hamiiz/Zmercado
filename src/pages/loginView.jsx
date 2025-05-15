@@ -1,13 +1,22 @@
 import "../assets/loginView.css";
 import { NavLink, useFetcher } from "react-router-dom";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 import Form from "../components/Form";
 import Auths from "../components/authLinks";
 import Copyright from "../components/copyright";
 export default function Login() {
 
   let fetcher = useFetcher() 
-  let errors = fetcher.data?.errors 
-
+  
+  useEffect(() => {
+    if (fetcher.data?.errors) {
+      const errorMsg = fetcher.data.errors.message;
+      if (!toast.isActive(errorMsg)) {
+        toast.error(errorMsg, { toastId: errorMsg });
+      }
+    }
+  }, [fetcher.data]);
 
 
   return (
@@ -18,21 +27,18 @@ export default function Login() {
           <div className="loginform">
             <input
               className={`forminput usename`}
-              style={errors?.username&&{marginBottom:'-.5rem'}}
+              // style={errors?.username&&{marginBottom:'-.5rem'}}
               type="text"
               placeholder="Enter your Email or Username"
               name="username"
             />
-            {errors?.username && <p style={{color:'red',margin:'0',marginRight:'auto'}} >{errors.username}</p>}
 
             <input
               type="password"
-              style={errors?.username&&{marginBottom:'-.5rem'}}
               name="password"
               className="forminput password"
               placeholder="Enter Password"
             />
-            {errors?.password && <p style={{color:'red',margin:'0',marginRight:'auto'}} >{errors.password}</p>}
 
           </div>
         </Form>

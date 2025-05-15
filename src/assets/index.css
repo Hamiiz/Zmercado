@@ -1,4 +1,6 @@
-
+html, body {
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
 html{
   padding: 0;
   margin: 0;
