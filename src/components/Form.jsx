@@ -7,6 +7,8 @@ export default function Form({fetcher,route,children}){
                 {children}
                 <input type="submit" style={{textTransform:'capitalize'}} value={
                     fetcher.state !== "idle"? 'Processing...':route
+                } disabled={
+                    fetcher.state !== 'idle'?true:false
                 } />
         </fetcher.Form>
     )
