@@ -1,4 +1,4 @@
-import { BsGoogle, BsFacebook, BsTwitterX } from "react-icons/bs";
+import { BsGoogle, BsFacebook, BsTwitterX, BsGithub } from "react-icons/bs";
 import { IconContext } from "react-icons";
 import { toast } from "react-toastify";
 import { authClient } from "../utils/authClient";
@@ -28,7 +28,9 @@ export default function Auths() {
      let providerName = e.target.id
       try{
 
+
         const data = await authClient.signIn.social({
+        
             provider: String(providerName)
         })
         console.log(data)
@@ -51,7 +53,7 @@ export default function Auths() {
         className={isHovered ==1? "authHover" : ""}
         style={authStyle}
       >
-        <BsGoogle />
+        <BsGoogle onClick={(e)=>e.stopPropagation()} />
       </div>
       <div
         id="facebook"
@@ -60,17 +62,17 @@ export default function Auths() {
         className={isHovered==2 ? "authHover" : ""}
         style={authStyle}
       >
-        <BsFacebook style={{ color: "blue" }} />
+        <BsFacebook onClick={(e)=>e.stopPropagation()} style={{ color: "blue" }} />
       </div>
       <div
-            id="twitter"
-
+            id="github"
+        onClick={signIn}
         className={isHovered ==3? "authHover" : ""}
         onMouseEnter={() => setIsHovered(3)}
         onMouseLeave={() => setIsHovered(0)}
         style={authStyle}
       >
-        <BsTwitterX />
+        <BsGithub onClick={(e)=>e.stopPropagation()}/>
       </div>
     </div>
   );
