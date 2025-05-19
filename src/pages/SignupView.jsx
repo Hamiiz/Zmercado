@@ -2,6 +2,7 @@ import "../assets/loginView.css";
 import Form from "../components/Form";
 import Auths from "../components/authLinks";
 import Copyright from "../components/copyright";
+import AnonLogin from "../components/anonymousLogin";
 import { LogOrSign } from "./loginView";
 import { useFetcher, } from "react-router-dom";
 import { useEffect, } from "react";
@@ -81,9 +82,9 @@ export default function SignUp() {
               required
             />
             {/* {errors?.password&&<p style={{margin:0,color:'red',marginRight:'auto'}}>{errors?.password}</p>} */}
-
           </div>
         </Form>
+            <AnonLogin/>
 
         <Copyright />
 
