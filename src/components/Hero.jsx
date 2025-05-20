@@ -6,16 +6,16 @@ export default function Hero() {
     backgroundImage: "url(heroimg.jpeg)",
     backgroundSize: "cover",
     backgroundPosition: "center",
-    height: "20vh",
-    width: "100%",
+ 
   };
   return (
-    <div className="hero py-3 " style={herostyle}>
-      <div className="overly">
-        <div className="contner m-4">
-          <h1 className="text-red">ZMERCADO</h1>
-          <p>Zapping deals</p>
-          <div className="heroBtns">
+    <div className="hero relative flex justify-center 
+    items-center flex-wrap text-emerald-800 w-full  py-8 font-(verdana) font-bold
+     " style={herostyle}>
+        <div className="contner m-4 z-3">
+          <h1 className="text-[2rem] ">ZMERCADO</h1>
+          <p className="text-[1.5rem]">Zapping deals</p>
+          <div className="heroBtns mt-2">
             <NavLink className="btn1" to={'/auth/signup'}>
             SignUp
               
@@ -26,6 +26,8 @@ export default function Hero() {
             </NavLink>
           </div>
         </div>
+      <div className="overly flex justify-center absolute m-0
+      backdrop-blur-[2.5px] w-full h-full">
       </div>
     </div>
   );
@@ -33,16 +35,19 @@ export default function Hero() {
 
 function Features() {
   return (
-    <div className="features">
+    <div className="features w-2/3 
+    shadow-lg text-center">
       <h1
         style={{
           marginBottom: "3rem",
-        }}
+        }} 
+        className="text-[1.5rem] md:text-[1.7rem]
+        m-3 text-center"
       >
         What Do we do?
       </h1>
 
-      <div className="cards">
+      <div className="cards w-5/6  flex-wrap">
         <div className="card">
           <i className="fa-solid fa-truck" title="Fast Delivery"></i>
           <h4>Fast delivery</h4>
@@ -77,8 +82,8 @@ function Sponsors() {
   const duplicatedSponsors = [...sponsors, ...sponsors]; // Duplicate for infinite scroll
 
   return (
-    <div className="bg-black py-10 overflow-hidden">
-      <h1 className="text-white text-3xl font-semibold text-center mb-6">
+    <div className=" py-10  w-5/6 mx-auto overflow-hidden">
+      <h1 className="text-black text-3xl font-semibold text-center mb-6">
         Our Sponsors
       </h1>
 

@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { toast } from "react-toastify";
 import Form from "../components/Form";
 import Auths from "../components/authLinks";
-import Copyright from "../components/copyright";
+import Copyright from "../components/Copyright";
 export default function Login() {
 
   let fetcher = useFetcher() 
@@ -22,22 +22,26 @@ export default function Login() {
   return (
     <section className="login-container">
       <div className="login">
-        <h2 style={{ marginBottom: "2rem" }}>Login</h2>
+        <h2
+        className="text-2xl md:text-3xl font-bold mt-3"
+         style={{ marginBottom: "2rem" }}>Login</h2>
         <Form route={'login'} fetcher={fetcher}>
           <div className="loginform">
             <input
-              className={`forminput usename`}
+              className={`forminput usename required`}
               // style={errors?.username&&{marginBottom:'-.5rem'}}
               type="text"
               placeholder="Enter your Email or Username"
               name="username"
+              required
             />
 
             <input
               type="password"
               name="password"
-              className="forminput password"
+              className="forminput password required"
               placeholder="Enter Password"
+              required
             />
 
           </div>
@@ -52,9 +56,9 @@ export default function Login() {
           <div>
             <Auths />
           </div>
-          <div className="log2sign">
+
             <LogOrSign>Signup</LogOrSign>
-          </div>
+
         </div>
       </div>
     </section>
@@ -65,7 +69,9 @@ export function LogOrSign({ children }) {
   return (
     <>
       <NavLink
+      className="log2sign px-2 py-2"
         style={{
+
           color: "mediumseagreen",
           textDecoration: "none",
         }}

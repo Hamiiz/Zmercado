@@ -7,9 +7,9 @@ body{
     height: 100%;
     align-content: center;
     backdrop-filter: blur(50px);
-    position: relative;
+    position: relative; 
 
-}
+} 
 
 .login-container{
 
@@ -74,12 +74,13 @@ body{
    background-color: white;
    border-bottom-right-radius: 37px;
    font-size: .8rem;
-   padding: 5%;
+   /* padding: 5%; */
    font-weight: 700;
    transition: all 200ms ease-in-out;
    align-self: center;
    z-index: 3;
-   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.596);
+ width:max-content;
+   /* box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.596); */
 }
 .log2sign:hover{
     cursor:default;
