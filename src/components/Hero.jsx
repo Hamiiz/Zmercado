@@ -1,31 +1,44 @@
 import "../assets/hero.css";
 import { NavLink} from 'react-router-dom'
+import Profile from "./Profile";
+import Logout from "./logout";
 
-export default function Hero() {
+
+export default function Hero({session}) {
   let herostyle = {
     backgroundImage: "url(heroimg.jpeg)",
     backgroundSize: "cover",
     backgroundPosition: "center",
-    height: "20vh",
-    width: "100%",
+ 
   };
+
   return (
-    <div className="hero py-3 " style={herostyle}>
-      <div className="overly">
-        <div className="contner m-4">
-          <h1 className="text-red">ZMERCADO</h1>
-          <p>Zapping deals</p>
-          <div className="heroBtns">
-            <NavLink className="btn1" to={'/auth/signup'}>
+    <div className="hero relative flex justify-center 
+    items-center flex-wrap w-full  py-20 font-(verdana) font-bold
+     " style={herostyle}>
+      { 
+        session&&
+        <div>
+            <Profile user={session?.user}></Profile>
+            <Logout session={session}/>
+        </div>
+      }
+        <div className="contner m-4 z-3">
+          <h1 className="text-[2rem] z-3 dark:text-accent text-emerald-800 md:text-5xl rowdies-bold ">ZMERCADO</h1>
+          <p className="text-[1.5rem] text-transparent font-bold bg-clip-text bg-linear-90 from-amber-300 to-amber-600 gloria-regular">Zapping deals</p>
+          <div className="heroBtns mt-2">
+            <NavLink className="btn1 bg-accent text-background dark:text-foregorund"  to={'/auth/signup'}>
             SignUp
               
             </NavLink>
-            <NavLink className="btn2" to={'/auth/login'}>
+            <NavLink className="btn2 bg-background text-accent dark:text-foreground" to={'/auth/login'}>
             SignIn
 
             </NavLink>
           </div>
         </div>
+      <div className="overly flex  dark:brightness-50 justify-center absolute m-0
+      backdrop-blur-[2.5px] w-full h-full">
       </div>
     </div>
   );
@@ -33,27 +46,30 @@ export default function Hero() {
 
 function Features() {
   return (
-    <div className="features">
+    <div className="features w-2/3 
+    shadow-lg dark:shadow-emerald-950 text-center">
       <h1
         style={{
           marginBottom: "3rem",
-        }}
+        }} 
+        className="text-[1.5rem]  md:text-[1.7rem]
+        m-3 text-center"
       >
         What Do we do?
       </h1>
 
-      <div className="cards">
-        <div className="card">
+      <div className="cards  w-5/6  flex-wrap">
+        <div className="card shadow-md bg-card">
           <i className="fa-solid fa-truck" title="Fast Delivery"></i>
           <h4>Fast delivery</h4>
           <p>Get your items delivered within an incredible amount of time.</p>
         </div>
-        <div className="card">
+        <div className="card shadow-md bg-card">
           <i className="fa-solid fa-truck" title="Fast Delivery"></i>
           <h4>Fast delivery</h4>
           <p>Get your items delivered within an incredible amount of time.</p>
         </div>
-        <div className="card">
+        <div className="card shadow-md bg-card">
           <i className="fa-solid fa-truck" title="Fast Delivery"></i>
           <h4>Fast delivery</h4>
           <p>Get your items delivered within an incredible amount of time.</p>
@@ -77,8 +93,8 @@ function Sponsors() {
   const duplicatedSponsors = [...sponsors, ...sponsors]; // Duplicate for infinite scroll
 
   return (
-    <div className="bg-black py-10 overflow-hidden">
-      <h1 className="text-white text-3xl font-semibold text-center mb-6">
+    <div className=" py-10  w-5/6 mx-auto overflow-hidden">
+      <h1 className="text-3xl font-semibold text-center mb-6">
         Our Sponsors
       </h1>
 

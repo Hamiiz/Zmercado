@@ -4,11 +4,17 @@ import CustomButton from '../components/customButton'
 import Hero from '../components/Hero'
 import { NavLink } from 'react-router-dom'
 import {useSession} from '../hooks/useSession'
+
 // import '../assets/HomeView.css'
 
 
 
 export default function Homepage(){
+    let {session,isPending} = useSession()
+    if (!isPending){
+        console.info(session)
+
+    }
     const button_style={
         backgroundColor: 'mediumseagreen',
         color: 'white',
@@ -18,11 +24,9 @@ export default function Homepage(){
         border: 'none',
         cursor: 'pointer',
     }
-    let session = useSession()
-    console.info(session)
     return(
         <>
-            <Hero />
+            <Hero session={session} />
             <Features />
             <Sponsors />
             <NavLink to={'/signup'} ><CustomButton text="Join us" className={button_style}/></NavLink>

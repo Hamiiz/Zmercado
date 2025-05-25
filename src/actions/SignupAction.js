@@ -25,34 +25,34 @@ export default async function SignupAction ({request}) {
         return{errors}
 
    
-    }
-    // if (!EmailIsValid(email)){
-    //     errors.email = 'Email is used by another Account!!'
-    // }
-
-    
-    
+    }    
     else{
-        console.log(email)
-        let {data,error} = 	await authClient.signUp.email({
-            email:email,
-			password:password,
-            username:username,
-			fetchOptions: {
-				
-			    onError: (ctx) => {
-                    console.info(ctx)  
-				},	
-			},
-		});
-        if (error){
-            console.error(error)
-            errors.message = error.message
-            return{errors}
-        }else{
-            console.log( data)
-            return redirect('/auth/login')
-        }
+ 
+
+
+    let {data,error} = 	await authClient.signUp.email({
+        email:email,
+        password:password,
+        username:username,
+        fetchOptions: {
+            
+            onError: (ctx) => {
+                ctx.message?
+                errors.message =  ctx.message:
+                errors.message = 'Server Error Occured'
+             
+            },	
+        },
+    });
+    if (!error){
+        console.log( data)
+    return redirect('/auth/login')
+    }else{
+        return {errors}
+    }
+
+
+        
         
         
        

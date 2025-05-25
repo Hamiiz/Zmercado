@@ -8,5 +8,5 @@ export function useSession(){
         error, //error object
         refetch //refetch the session
     } = authClient.useSession()
-    return{session}
+    return{session,isPending,error}
 }

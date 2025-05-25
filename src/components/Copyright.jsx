@@ -5,7 +5,7 @@
 
     return(
         <>
-        <p style={{fontSize:'11px',color:'gray'}}><FaCopyright/> Cybernova Inc. {year} </p>
+        <p className="mt-2"  style={{fontSize:'11px',color:'gray'}}><FaCopyright className="inline" /> Cybernova Inc. {year} </p>
         </>
     )
 }
