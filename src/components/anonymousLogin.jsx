@@ -19,13 +19,16 @@ export default function AnonLogin(){
     return(
         <button 
         onClick={handleLogin}
+        className="transition bg-background hover:bg-card"
+
         style={{
+
             margin:'0 auto',
             width:'100%',
             fontSize:'.5rem',
             backgroudColor:'lightgrey',
             borderRadius:'5px',
-            border:'1px solid black',
+            border:'1px solid grey',
             padding:'.3rem',
             color:'balck'}}
         >

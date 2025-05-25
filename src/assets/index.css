@@ -1,3 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Basic&family=Gloria+Hallelujah&family=Rowdies:wght@300;400;700&display=swap');
+@import "tailwindcss";
+
+
+
+:root{
+  --background:255, 255, 255;
+  --color:0,0,0;
+  --accent: 16, 185, 129;
+  --card:  250, 250, 250;
+}
+.dark{
+  --background:26, 26, 26;
+  --color: 255, 255, 255;
+  --accent: 46, 138, 87;
+  --card:35,35,35;
+
+}
+@custom-variant dark (&:where(.dark, .dark *));
+@theme{
+  --color-background: rgb(var(--background));
+  --color-foreground: rgb(var(--color));
+  --color-accent:rgb(var(--accent));
+  --color-card: rgb(var(--card));
+
+}
+
+.rowdies-light {
+  font-family: "Rowdies", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.rowdies-regular {
+  font-family: "Rowdies", sans-serif!important;
+  font-weight: 400!important;
+  font-style: normal!important;
+}
+
+.rowdies-bold {
+  font-family: "Rowdies", sans-serif!important;
+  font-weight: 700!important;
+  font-style: normal!important;
+}
+
+
+.gloria-regular {
+  font-family: "Gloria Hallelujah", cursive;
+
+  font-style: normal;
+}
+.basic-regular {
+  font-family: "Basic", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+
 
 html, body {
   overflow-x: hidden; /* Prevent horizontal scrolling */
@@ -15,4 +74,4 @@ body{
 #root{
   padding: 0;
 }
-@import "tailwindcss";
+

@@ -20,8 +20,8 @@ export default function Login() {
 
 
   return (
-    <section className="login-container">
-      <div className="login">
+    <section className="login-container ">
+      <div className="login dark:bg-card">
         <h2
         className="text-2xl md:text-3xl font-bold mt-3"
          style={{ marginBottom: "2rem" }}>Login</h2>
@@ -69,7 +69,7 @@ export function LogOrSign({ children }) {
   return (
     <>
       <NavLink
-      className="log2sign px-2 py-2"
+      className="log2sign bg-background px-2 py-2 hover:bg-card"
         style={{
 
           color: "mediumseagreen",
@@ -77,7 +77,7 @@ export function LogOrSign({ children }) {
         }}
         to={`/auth/${children}`}
       >
-        <p>{children}</p>
+        <p className="m-1">{children}</p>
       </NavLink>
     </>
   );

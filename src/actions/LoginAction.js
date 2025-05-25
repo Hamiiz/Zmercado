@@ -1,4 +1,4 @@
-import { redirect } from "react-router"
+import { redirect } from "react-router-dom"
 import { authClient } from "../utils/authClient"
 // eslint-disable-next-line no-unused-vars
 import axios from "axios" // eslint-ignore
@@ -46,19 +46,21 @@ export default async function LoginAction ({request}) {
         }
     } else{
         const { data, error } = await authClient.signIn.username({
-    
             username:username,
             password:password,
-            /**
-             * remember the user session after the browser is closed. 
-             * @default true
-             */
-            rememberMe: false
-            }, {
-              
-        })
+            rememberMe: false,
+            fetchOptions: {
+            
+                onError: (ctx) => {
+                    ctx.message?
+                    errors.message =  ctx.message:
+                    errors.message = 'Server Error Occured'
+                    return{errors}
+                },	
+            },
+        
+            })
         if(error){
-            errors.message = error.message
             return{errors}
         }else{
             console.log(data)

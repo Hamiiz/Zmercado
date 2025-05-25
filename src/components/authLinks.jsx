@@ -14,7 +14,6 @@ export default function Auths() {
     justifyContents: "center",
   };
   let authStyle = {
-    backgroundColor: "white",
     padding: ".2rem",
     width: "2rem",
     height: "2rem",
@@ -31,10 +30,13 @@ export default function Auths() {
 
         const data = await authClient.signIn.social({
         
-            provider: String(providerName)
+            provider: String(providerName),
+            callbackURL:'http://localhost:5173/'
+  
         })
         console.log(data)
       } catch(error){
+        console.log(error)
           toast.error(error)
 
       }
@@ -44,35 +46,36 @@ export default function Auths() {
   
 
   return (
-    <div className="authlinks" style={authLinkstyles}>
+    <div className="authlinks  " style={authLinkstyles}>
       <div
       id="google"
+      
         onClick={signIn}  
         onMouseEnter={() => setIsHovered(1)}
         onMouseLeave={() => setIsHovered(0)}
-        className={isHovered ==1? "authHover" : ""}
+        className={isHovered ==1? "authHover" : "bg-background dark:bg-card"}
         style={authStyle}
       >
-        <BsGoogle onClick={(e)=>e.stopPropagation()} />
+        <BsGoogle style={{pointerEvents:'none'}} />
       </div>
       <div
         id="facebook"
         onMouseEnter={() => setIsHovered(2)}
         onMouseLeave={() => setIsHovered(0)}
-        className={isHovered==2 ? "authHover" : ""}
+        className={isHovered==2 ? "authHover" : "bg-background dark:bg-card"}
         style={authStyle}
       >
-        <BsFacebook onClick={(e)=>e.stopPropagation()} style={{ color: "blue" }} />
+        <BsFacebook style={{pointerEvents:'none' }} />
       </div>
       <div
-            id="github"
+        id="github"
         onClick={signIn}
-        className={isHovered ==3? "authHover" : ""}
+        className={isHovered ==3? "authHover" : "bg-background dark:bg-card"}
         onMouseEnter={() => setIsHovered(3)}
         onMouseLeave={() => setIsHovered(0)}
         style={authStyle}
       >
-        <BsGithub onClick={(e)=>e.stopPropagation()}/>
+        <BsGithub style={{pointerEvents:'none'}}  />
       </div>
     </div>
   );

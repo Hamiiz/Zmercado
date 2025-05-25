@@ -4,6 +4,10 @@ import Login from "./pages/loginView";
 import SignUp from "./pages/SignupView";
 import SignupAction from "./actions/SignupAction";
 import LoginAction from "./actions/LoginAction";
+import AddInfo from "./pages/InfoView";
+import InfoAction from "./actions/InfoAction";
+import Auth from "./pages/AuthLayout";
+
 const router = createBrowserRouter([
 
     {
@@ -13,6 +17,7 @@ const router = createBrowserRouter([
     },
     {
         path:'/auth',
+        Component:Auth,
         children:[
                 
             {
@@ -31,5 +36,10 @@ const router = createBrowserRouter([
             
         ]
     },
+    {
+        path:'/add_info',
+        Component: AddInfo,
+        action: InfoAction
+    }
 ])
 export default router
