@@ -10,11 +10,9 @@ import {useSession} from '../hooks/useSession'
 
 
 export default function Homepage(){
+    //eslint-disable-next-line
     let {session,isPending} = useSession()
-    if (!isPending){
-        console.info(session)
-
-    }
+  
     const button_style={
         backgroundColor: 'mediumseagreen',
         color: 'white',
@@ -29,7 +27,7 @@ export default function Homepage(){
             <Hero session={session} />
             <Features />
             <Sponsors />
-            <NavLink to={'/signup'} ><CustomButton text="Join us" className={button_style}/></NavLink>
+            <NavLink to={'/auth/signup'} ><CustomButton text="Join us" className={button_style}/></NavLink>
             <Footer/>
             
 

@@ -13,6 +13,7 @@ export default function Profile({ user }) {
 export function Avatar({ user }) {
   return(
     <>
+ 
    { user?.image&& <div className=" z-5  w-12 h-12 rounded-full  flex items-center justify-center relative" style={{backgroundImage:new URL(user.image)}} ></div>}
    {!user?.image&& user.name!=null? < InitialsAvatar name={user.name} />: <InitialsAvatar name={getRandomName()} />  } 
     </>

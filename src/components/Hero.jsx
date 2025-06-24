@@ -2,6 +2,7 @@ import "../assets/hero.css";
 import { NavLink} from 'react-router-dom'
 import Profile from "./Profile";
 import Logout from "./logout";
+import ProductBox from "./product";
 
 
 export default function Hero({session}) {
@@ -9,6 +10,7 @@ export default function Hero({session}) {
     backgroundImage: "url(heroimg.jpeg)",
     backgroundSize: "cover",
     backgroundPosition: "center",
+  
  
   };
 
@@ -24,14 +26,15 @@ export default function Hero({session}) {
         </div>
       }
         <div className="contner m-4 z-3">
-          <h1 className="text-[2rem] z-3 dark:text-accent text-emerald-800 md:text-5xl rowdies-bold ">ZMERCADO</h1>
-          <p className="text-[1.5rem] text-transparent font-bold bg-clip-text bg-linear-90 from-amber-300 to-amber-600 gloria-regular">Zapping deals</p>
+          <h1 className="text-[2rem] z-3 dark:text-accent text-emerald-800 
+          md:text-6xl rowdies-bold m-3  stroke-4 ">ZMERCADO</h1>
+          <p className="text-[1.5rem] m-3 text-transparent font-bold bg-clip-text bg-linear-90 from-amber-300 to-amber-600 gloria-regular">Zapping deals</p>
           <div className="heroBtns mt-2">
-            <NavLink className="btn1 bg-accent text-background dark:text-foregorund"  to={'/auth/signup'}>
+            <NavLink className="btn1 bg-accent text-background hover:bg-emerald-900  dark:text-foreground"  to={'/auth/signup'}>
             SignUp
               
             </NavLink>
-            <NavLink className="btn2 bg-background text-accent dark:text-foreground" to={'/auth/login'}>
+            <NavLink className="btn2 bg-background text-accent hover:bg-emerald-950 dark:text-foreground" to={'/auth/login'}>
             SignIn
 
             </NavLink>
@@ -59,17 +62,17 @@ function Features() {
       </h1>
 
       <div className="cards  w-5/6  flex-wrap">
-        <div className="card shadow-md bg-card">
+        <div className="card hover:scale-105 hover:shadow-amber-400 hover:shadow-2xs delay-sm transition-all shadow-md bg-card">
           <i className="fa-solid fa-truck" title="Fast Delivery"></i>
           <h4>Fast delivery</h4>
           <p>Get your items delivered within an incredible amount of time.</p>
         </div>
-        <div className="card shadow-md bg-card">
+        <div className="card hover:scale-105 hover:shadow-amber-400 hover:shadow-2xs delay-sm transition-all shadow-md bg-card">
           <i className="fa-solid fa-truck" title="Fast Delivery"></i>
           <h4>Fast delivery</h4>
           <p>Get your items delivered within an incredible amount of time.</p>
         </div>
-        <div className="card shadow-md bg-card">
+        <div className="card hover:scale-105 hover:shadow-amber-400 hover:shadow-2xs delay-sm transition-all shadow-md bg-card">
           <i className="fa-solid fa-truck" title="Fast Delivery"></i>
           <h4>Fast delivery</h4>
           <p>Get your items delivered within an incredible amount of time.</p>
@@ -105,6 +108,16 @@ function Sponsors() {
               <img src={src} alt="Sponsor" className="w-28 logo-img h-auto" />
             </div>
           ))}
+        </div>
+
+
+
+
+
+        <div>
+
+          <ProductBox product={{title:'title',desc:'lorem ipsum dolor sit amet constrecteur'}} />
+
         </div>
       </div>
      

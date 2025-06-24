@@ -46,7 +46,7 @@ export default async function SignupAction ({request}) {
     });
     if (!error){
         console.log( data)
-    return redirect('/auth/login')
+    return redirect('/add_info')
     }else{
         return {errors}
     }

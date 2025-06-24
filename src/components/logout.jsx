@@ -10,7 +10,7 @@ export default function Logout({session}){
         try{
 
             await authClient.signOut({  });
-            navigate('/auth/login')
+            navigate('/')
         }catch(err){
             toast.error(err)
         }

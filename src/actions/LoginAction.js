@@ -66,11 +66,11 @@ export default async function LoginAction ({request}) {
             console.log(data)
             // try {
                 
-            //     let tokenData = await axios.get("http://localhost:1000/auth/token",{
-            //      withCredentials:true
-            //     })
-            //     // let token = tokenData.data
-                
+                let tokenData = await axios.get("http://localhost:1000/auth/token",{
+                 withCredentials:true
+                })
+                console.log(tokenData)
+     
             //     // let response = await axios.get("http://localhost:1000/getuser",{
             //     // headers:{
             //     //     "Authorization":`Bearer ${token.token}`,
@@ -84,8 +84,8 @@ export default async function LoginAction ({request}) {
             // }
             // const accounts = await authClient.listAccounts();
             // console.log(accounts)
-            console.info(`successful SignIn ${data.user.email} `)
-            return redirect('/')
+            console.info(`successful SignIn `)
+            return redirect('/add_info')
         }
     }
     

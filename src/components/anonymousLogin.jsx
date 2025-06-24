@@ -1,14 +1,18 @@
 import { MdPadding } from "react-icons/md"
 import { authClient } from "../utils/authClient"
 import { toast } from "react-toastify"
+import { redirect } from "react-router-dom"
 
 export default function AnonLogin(){
     const handleLogin = async (e)=>{
         e.preventDefault()
         try{
-
-            const data = await authClient.signIn.anonymous()
-            console.info(data)
+//eslint-disable-next-line
+            const {data,error} = await authClient.signIn.anonymous()
+            if (error){
+                toast.error(error.message)
+            }
+            return redirect('/')
         } catch(error){
             toast.error(error)
         }

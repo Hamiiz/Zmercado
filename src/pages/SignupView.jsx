@@ -82,8 +82,6 @@ export default function SignUp() {
             {/* {errors?.password&&<p style={{margin:0,color:'red',marginRight:'auto'}}>{errors?.password}</p>} */}
           </div>
         </Form>
-            <AnonLogin/>
-
         <Copyright />
 
         

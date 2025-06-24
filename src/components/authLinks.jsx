@@ -31,7 +31,7 @@ export default function Auths() {
         const data = await authClient.signIn.social({
         
             provider: String(providerName),
-            callbackURL:'http://localhost:5173/'
+            callbackURL:'http://localhost:5173/add_info'
   
         })
         console.log(data)

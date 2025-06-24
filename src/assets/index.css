@@ -16,6 +16,7 @@
   --card:35,35,35;
 
 }
+/* es-lint-ignore-next-line */
 @custom-variant dark (&:where(.dark, .dark *));
 @theme{
   --color-background: rgb(var(--background));
