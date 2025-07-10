@@ -1,7 +1,5 @@
 import { redirect } from "react-router-dom"
 import { authClient } from "../utils/authClient"
-// eslint-disable-next-line no-unused-vars
-import axios from "axios" // eslint-ignore
 export default async function LoginAction ({request}) {
     let formData = await request.formData()
     let emailRusername = formData.get('username')
@@ -45,6 +43,7 @@ export default async function LoginAction ({request}) {
             return redirect('/')
         }
     } else{
+        //eslint-disable-next-line 
         const { data, error } = await authClient.signIn.username({
             username:username,
             password:password,
@@ -52,8 +51,9 @@ export default async function LoginAction ({request}) {
             fetchOptions: {
             
                 onError: (ctx) => {
-                    ctx.message?
-                    errors.message =  ctx.message:
+                    ctx.error?.message?
+
+                    errors.message =  ctx.error.message:
                     errors.message = 'Server Error Occured'
                     return{errors}
                 },	
@@ -63,28 +63,12 @@ export default async function LoginAction ({request}) {
         if(error){
             return{errors}
         }else{
-            console.log(data)
             // try {
-                
-                let tokenData = await axios.get("http://localhost:1000/auth/token",{
-                 withCredentials:true
-                })
-                console.log(tokenData)
-     
-            //     // let response = await axios.get("http://localhost:1000/getuser",{
-            //     // headers:{
-            //     //     "Authorization":`Bearer ${token.token}`,
-                    
-            //     // }    ,
-            //     //  withCredentials:true
-            //     // })
-            // }catch (err){
-            //     errors.message = err
-            //     return {errors}
+            //     console.log(data)
+            //     const {emailVerified} = data?.user || null
+            // if (!emailVerified){
+            //         return redirect('/verify_email')
             // }
-            // const accounts = await authClient.listAccounts();
-            // console.log(accounts)
-            console.info(`successful SignIn `)
             return redirect('/add_info')
         }
     }

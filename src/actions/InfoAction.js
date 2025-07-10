@@ -1,6 +1,5 @@
 import { redirect } from "react-router-dom"
 import { authClient } from "@/utils/authClient"
-//eslint-disable-next-line
 import axios from "axios" 
 
 export default async function InfoAction ({request}) {
@@ -11,7 +10,6 @@ export default async function InfoAction ({request}) {
     let name = formData.get('name')
     let phone = formData.get('phone')
     let select = formData.get('select')
-    //eslint-disable-next-line
     let postData = {id,name,phone,select}
    
 

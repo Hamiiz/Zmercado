@@ -7,9 +7,12 @@ import LoginAction from "./actions/LoginAction";
 import AddInfo from "./pages/InfoView";
 import InfoAction from "./actions/InfoAction";
 import Auth from "./pages/AuthLayout";
-
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 import { authClient } from "./utils/authClient";
+import VerificationPage from "./pages/EmailVirefication";
+import VerifyAction from "./actions/VerifyAction";
+import { HandleOtp } from "./loaders/sendOtp";
+import ProductPage from "./pages/ProductPage";
 
 const router = createBrowserRouter([
 
@@ -47,6 +50,23 @@ const router = createBrowserRouter([
         loader:infoLoader
     
         
+    },
+    {
+        path:'/verify_email',
+        Component: VerificationPage,
+        action:VerifyAction,
+        loader: HandleOtp
+        
+    },
+    {
+        path:'/products',
+        children:[
+            {
+                index:true,
+                Component:ProductPage
+            }
+        ]
+
     }
 ])
 export default router
@@ -54,7 +74,7 @@ export default router
 async function getToken(){
     try{
         let response =await axios.get('http://localhost:1000/auth/token',{withCredentials:true})
-        return response.status
+        return response.data
     }catch(error:any){
         console.log('unAuthorized!')
         return redirect('/auth/login')
@@ -62,8 +82,32 @@ async function getToken(){
     }
 }
 async function infoLoader(){
-    let sessionData  =  await getToken()
-    return sessionData
+    let {token}  =  await getToken()
+    const {data} =await authClient.getSession()
+    let name = data?.user?.name || ''
+    try{
+        //REPLACE WITH STATE MANAGEMENT
+        let response = await axios.get("http://localhost:1000/addroles",{
+                 headers:{
+                    "Authorization":`Bearer ${token}`,
+                    
+                 },
+              withCredentials:true
+             })
+  
+        if (response?.data.roles.length>0&&(name.length>0)){
+            const emailVerified = data?.user?.emailVerified
+            if(emailVerified){
+
+                return redirect('/')
+            }else{
+                return  redirect('/verify_email')
+
+            }
+        }
+    }catch (err:any){
+       return err.message
+    }
 
     
 }
@@ -73,8 +117,5 @@ async function loginLoader(){
         return redirect('/')
     }
 
-
-     
-   
     
 }

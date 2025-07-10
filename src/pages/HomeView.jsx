@@ -29,6 +29,7 @@ export default function Homepage(){
             <Sponsors />
             <NavLink to={'/auth/signup'} ><CustomButton text="Join us" className={button_style}/></NavLink>
             <Footer/>
+       
             
 
         </>
