@@ -1,5 +1,6 @@
 import { redirect } from "react-router-dom"
 import { authClient } from "../utils/authClient"
+
 export default async function LoginAction ({request}) {
     let formData = await request.formData()
     let emailRusername = formData.get('username')
@@ -22,26 +23,31 @@ export default async function LoginAction ({request}) {
 
 
     if (isEmail){
-
+//eslint-disable-next-line
         const { data, error } = await authClient.signIn.email({
     
             email:email,
             password:password,
-            /**
-             * remember the user session after the browser is closed. 
-             * @default true
-             */
-            rememberMe: false
+            rememberMe: false,
+            fetchOptions: {
+            
+                onError: (ctx) => {
+                    ctx.error?.message?
+
+                    errors.message =  ctx.error.message:
+                    errors.message = 'Server Error Occured'
+                    return{errors}
+                },	
+            
+                onSuccess:()=>{
+                    
+                    return redirect('/add_info')
+                }
+            },
             }, {
               
         })
-        if(error){
-            errors.message = error.message
-            return{errors}
-        }else{
-            console.info(`successful SignIn ${data.user.email} `)
-            return redirect('/')
-        }
+        
     } else{
         //eslint-disable-next-line 
         const { data, error } = await authClient.signIn.username({
@@ -57,20 +63,15 @@ export default async function LoginAction ({request}) {
                     errors.message = 'Server Error Occured'
                     return{errors}
                 },	
+                onSuccess:()=>{
+                 
+                    console.info('success log')
+                    return redirect('/add_info')
+                }
             },
         
             })
-        if(error){
-            return{errors}
-        }else{
-            // try {
-            //     console.log(data)
-            //     const {emailVerified} = data?.user || null
-            // if (!emailVerified){
-            //         return redirect('/verify_email')
-            // }
-            return redirect('/add_info')
-        }
+       
     }
     
 

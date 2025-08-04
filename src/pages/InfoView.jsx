@@ -50,7 +50,7 @@ export default function AddInfo() {
         <Form
           className="w-1/2 my-5 mx-auto "
           fetcher={fetcher}
-          route="Submit Info"
+          route="add_info"
         >
           <Label htmlFor="name" className=" text-xs float-left ">
             Enter your Full name

@@ -13,7 +13,7 @@ input{
     color:mediumseagreen;
     border:1px solid mediumseagreen;
     font-size: .8rem;
-    padding: 5% 5%;
+    /* padding: 5% 5%; */
     border-radius: 5px;
     transition: outline ease-in-out 1s;
 }
@@ -21,8 +21,9 @@ input[type='submit']{
     position: relative;
     background-color: mediumseagreen;
     color: white;
-    width: 100%;
-    padding: 2% 3%;
+    width: fit-content;
+
+    padding:    1rem 3rem;
     font-size: .7rem;
     margin: 1rem 0;
     position: relative;

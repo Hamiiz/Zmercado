@@ -12,9 +12,9 @@ import {
 } from "@/components/ui/form"
 
 
-export default function Form({className,fetcher,route,children}){
+export default function Form({className,fetcher,route,encType,children}){
     return(
-        <fetcher.Form method='post' className={className} action={route=='signup'||route=='login'?`/auth/${route}`:`/add_info`}>
+        <fetcher.Form method='post' encType={encType?encType:""} className={className} action={route=='signup'||route=='login'?`/auth/${route}`:`/${route}`}>
                 {children}
               
                 <input type="submit" style={{textTransform:'capitalize'}} value={

@@ -6,19 +6,31 @@ import SignupAction from "./actions/SignupAction";
 import LoginAction from "./actions/LoginAction";
 import AddInfo from "./pages/InfoView";
 import InfoAction from "./actions/InfoAction";
-import Auth from "./pages/AuthLayout";
-import axios, { AxiosError, AxiosResponse } from "axios";
+import Auth from "./pages/layouts/AuthLayout";
 import { authClient } from "./utils/authClient";
 import VerificationPage from "./pages/EmailVirefication";
 import VerifyAction from "./actions/VerifyAction";
 import { HandleOtp } from "./loaders/sendOtp";
 import ProductPage from "./pages/ProductPage";
+import extractRoles from "./utils/extractRoles";
+import AddProducts from "./pages/AddProducts";
+import ProductsLayout from "./pages/layouts/ProductsLayout";
+import productAction from "./actions/productAction";
+import { getToken } from "./utils/tokenManager";
+import { useTokenStore } from "./stores/userStore";
+import ProductLoader from "./loaders/productsLoader";
+import ProductFallBack from "./pages/layouts/ProductFallback";
+
 
 const router = createBrowserRouter([
 
     {
         path:'/',
         Component:Homepage, 
+        loader:async()=>{
+            let token = await getToken()
+            return token
+        }
         
     },
     {
@@ -44,6 +56,11 @@ const router = createBrowserRouter([
         ]
     },
     {
+        path:'/refetch-token',
+        loader:refetchLoader,
+        element:<h1>loading</h1>
+    },
+    {
         path:'/add_info',
         Component: AddInfo,
         action:InfoAction,
@@ -60,42 +77,43 @@ const router = createBrowserRouter([
     },
     {
         path:'/products',
+        Component: ProductsLayout,
+
         children:[
             {
                 index:true,
-                Component:ProductPage
+                Component:ProductPage,
+                loader:ProductLoader,
+                HydrateFallback: ProductFallBack,
+
+            },
+            {
+                path:'sell',
+                Component:AddProducts
+                ,action:productAction
+
             }
+
         ]
 
     }
 ])
 export default router
 
-async function getToken(){
-    try{
-        let response =await axios.get('http://localhost:1000/auth/token',{withCredentials:true})
-        return response.data
-    }catch(error:any){
-        console.log('unAuthorized!')
-        return redirect('/auth/login')
-      
-    }
-}
+
+
+
 async function infoLoader(){
-    let {token}  =  await getToken()
+    let token =  await getToken()
+    console.log('infoad', token)
+    if (!token){
+        return redirect('/auth/login')
+    }
+    localStorage.setItem('token',token)
+    let roles:Array<string>|null  = extractRoles(token);
     const {data} =await authClient.getSession()
-    let name = data?.user?.name || ''
-    try{
-        //REPLACE WITH STATE MANAGEMENT
-        let response = await axios.get("http://localhost:1000/addroles",{
-                 headers:{
-                    "Authorization":`Bearer ${token}`,
-                    
-                 },
-              withCredentials:true
-             })
-  
-        if (response?.data.roles.length>0&&(name.length>0)){
+    let name = data?.user?.name || ''  
+        if (roles!=null &&(name.length>0)){
             const emailVerified = data?.user?.emailVerified
             if(emailVerified){
 
@@ -105,12 +123,10 @@ async function infoLoader(){
 
             }
         }
-    }catch (err:any){
-       return err.message
-    }
 
     
 }
+
 async function loginLoader(){
     let {data} :any =await authClient.getSession()
     if (data?.session){
@@ -118,4 +134,21 @@ async function loginLoader(){
     }
 
     
+}
+// eslint-disable-next-line
+async function refetchLoader({request}){
+    const token = await getToken()
+    const url = new URL(request.url);
+    const next = url.searchParams.get('next') || '/products';
+
+
+    if (token) {
+        localStorage.setItem('token',token)
+        useTokenStore.getState().setToken(token);
+        return redirect(next);
+    } else {
+        return redirect(`/auth/login`);
+    }
+    
+
 }
