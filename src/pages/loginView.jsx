@@ -5,10 +5,10 @@ import { toast } from "react-toastify";
 import Form from "../components/Form";
 import Auths from "../components/authLinks";
 import Copyright from "../components/Copyright";
-
 export default function Login() {
 
   let fetcher = useFetcher() 
+
 
   useEffect(() => {
     if (fetcher.data?.errors) {
@@ -18,6 +18,8 @@ export default function Login() {
       }
     }
   }, [fetcher.data]);
+
+
 
 
   return (

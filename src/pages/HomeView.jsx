@@ -4,7 +4,6 @@ import CustomButton from '../components/customButton'
 import Hero from '../components/Hero'
 import { NavLink } from 'react-router-dom'
 import {useSession} from '../hooks/useSession'
-
 // import '../assets/HomeView.css'
 
 
@@ -12,7 +11,8 @@ import {useSession} from '../hooks/useSession'
 export default function Homepage(){
     //eslint-disable-next-line
     let {session,isPending} = useSession()
-  
+        
+
     const button_style={
         backgroundColor: 'mediumseagreen',
         color: 'white',
@@ -22,6 +22,8 @@ export default function Homepage(){
         border: 'none',
         cursor: 'pointer',
     }
+
+
     return(
         <>
             <Hero session={session} />
