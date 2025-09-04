@@ -11,7 +11,7 @@ const api = axios.create({
 api.interceptors.response.use(
   response => response,
   error => {
-    if (error.response?.status === 403||401) {
+    if (error.response?.status === 403) {
       const next = encodeURIComponent(window.location.pathname + window.location.search);
       window.location.href = `/refetch-token?next=${next}`;
       return new Promise(() => {}); // prevent further handling

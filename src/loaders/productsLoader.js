@@ -4,7 +4,7 @@ export default async function ProductLoader(){
     
     await sleep(1000);
     try{
-        const {data}  =await api.get('/getProducts')
+        const {data}  =await api.get('/getProducts?')
         console.log(data)
         return data
         

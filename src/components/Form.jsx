@@ -12,13 +12,13 @@ import {
 } from "@/components/ui/form"
 
 
-export default function Form({className,fetcher,route,encType,children}){
+export default function Form({className,id,fetcher,route,encType,buttonText,children}){
     return(
-        <fetcher.Form method='post' encType={encType?encType:""} className={className} action={route=='signup'||route=='login'?`/auth/${route}`:`/${route}`}>
+        <fetcher.Form method='post' id={id||''} encType={encType?encType:"application/x-www-form-urlencoded"} className={className} action={route=='signup'||route=='login'?`/auth/${route}`:`/${route}`}>
                 {children}
               
                 <input type="submit" style={{textTransform:'capitalize'}} value={
-                    fetcher.state !== "idle"? 'Processing...':route
+                    fetcher.state !== "idle"? 'Processing...':buttonText||route
                 } disabled={
                     fetcher.state !== 'idle'?true:false
                 } />

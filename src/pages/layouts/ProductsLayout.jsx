@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import { Outlet } from "react-router-dom";
 import CardSkeleton from "@/components/SkeletonUI";
 import { useNavigation } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 export default function ProductsLayout() {
 let navigation = useNavigation()

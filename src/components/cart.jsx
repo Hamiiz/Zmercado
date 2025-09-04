@@ -11,7 +11,7 @@ import {
 import { Separator } from "./ui/separator";
 import { Button } from "./ui/button";
 import useCartStore from "@/stores/cartStore";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Input } from "./ui/input";
 import { useState } from "react";
 export default function Cart({ children }) {
@@ -19,12 +19,13 @@ export default function Cart({ children }) {
   const [selectedIds, setSelectedIds] = useState([]);
 //eslint-disable-next-line
   const [itemAmount, setItemAmount] = useState(1);
-
+  const navigate = useNavigate();
 
   const toggledCB = (id) => {
     setSelectedIds((prev) =>
       prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
-    );
+  
+  );
   };
   const HandleRemoveItem = ()=>{
         if (selectedIds.length === 0) return;
@@ -38,7 +39,11 @@ export default function Cart({ children }) {
         setSelectedIds([]);
     
   }
-
+  function navigatToCheckout(){
+    const selectedItems = items.filter((item) => selectedIds.includes(item.id));
+    navigate('/paymentCheckout',{state:{items:selectedItems}})
+    
+    }
   return (
     <Drawer className="">
       <DrawerTrigger className="relative">{children}</DrawerTrigger>
@@ -85,6 +90,8 @@ export default function Cart({ children }) {
           <Button
             className="w-11/12 mx-auto bg-accent text-background hover:bg-accent/90"
             variant={"default"}
+            onClick={navigatToCheckout}
+            disabled={selectedIds.length === 0}
           >
             Checkout{" "}
             {  selectedIds.length === 0 ? null : `(${selectedIds.length})`}{" "}

@@ -20,6 +20,10 @@ import { getToken } from "./utils/tokenManager";
 import { useTokenStore } from "./stores/userStore";
 import ProductLoader from "./loaders/productsLoader";
 import ProductFallBack from "./pages/layouts/ProductFallback";
+import ItemPage from "./pages/ItemPage";
+import itemLoader from "./loaders/itemLoader";
+import PaymentChecout from "./pages/PaymentChecout";
+import paymentAction from "./actions/PaymentAction";
 
 
 const router = createBrowserRouter([
@@ -92,10 +96,27 @@ const router = createBrowserRouter([
                 Component:AddProducts
                 ,action:productAction
 
+            },
+            {
+                path:'item',
+                Component: ItemPage,
+                loader: itemLoader
+
             }
 
         ]
 
+    },
+    {
+        path:'/paymentCheckout',
+        Component: PaymentChecout,
+        action: paymentAction
+    }
+    ,
+    {
+        path:'/payments/success/:txn_id',
+        element:<h1>success </h1>,
+    
     }
 ])
 export default router

@@ -15,7 +15,8 @@ export default function ProductBox({ product, className }) {
 
   rating ? "" : (rating = 0);
   const [isCarted, setIsCarted] = useState(false);
-  const HandleAddCart = () => {
+  const HandleAddCart = (e) => {
+    e.stopPropagation(); 
     addItem(product);
     setIsCarted(true);
   };
