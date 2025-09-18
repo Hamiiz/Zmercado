@@ -5,7 +5,7 @@ export async   function HandleOtp(){
         const email = userData?.data?.user?.email
 
         if(userData?.data?.user?.emailVerified){
-           return redirect('/')
+           return redirect('/products')
         }
         const { data, error } = await authClient.emailOtp.sendVerificationOtp({
             email:email,
@@ -13,8 +13,7 @@ export async   function HandleOtp(){
            
 
         })
-        console.log(error)
-        console.log(data)
+     
         if (error?.status == 400){
             
             return redirect('/auth/login')

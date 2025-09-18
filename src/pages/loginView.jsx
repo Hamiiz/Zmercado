@@ -8,11 +8,11 @@ import Copyright from "../components/Copyright";
 export default function Login() {
 
   let fetcher = useFetcher() 
-
-
+  
   useEffect(() => {
     if (fetcher.data?.errors) {
       const errorMsg = fetcher.data.errors.message;
+      window.scrollTo({ top: 0, behavior: "smooth" });
       if (!toast.isActive(errorMsg)) {
         toast.error(errorMsg, { toastId: errorMsg });
       }
@@ -31,7 +31,7 @@ export default function Login() {
         <Form route={'login'} fetcher={fetcher}>
           <div className="loginform">
             <input
-              className={`forminput usename required`}
+              className={`forminput usename p-2 required`}
               // style={errors?.username&&{marginBottom:'-.5rem'}}
               type="text"
               placeholder="Enter your Email or Username"
@@ -42,7 +42,7 @@ export default function Login() {
             <input
               type="password"
               name="password"
-              className="forminput password required"
+              className="forminput password p-2 required"
               placeholder="Enter Password"
               required
             />

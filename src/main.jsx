@@ -10,9 +10,9 @@ createRoot(document.getElementById('root')).render(
 
     
     <App />
-      <div className="absolute">
+      <div className=" absolute  ">
       <ToastContainer 
-        className={'z-50'}
+        className={'z-50  '}
         position="top-right" 
         closeOnClick
         draggable={false}

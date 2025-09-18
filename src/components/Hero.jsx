@@ -1,10 +1,9 @@
 import "../assets/hero.css";
 import { NavLink} from 'react-router-dom'
-import Profile from "./Profile";
 import Logout from "./logout";
-import ProductBox from "./product";
 
 
+//eslint-disable-next-line
 export default function Hero({session}) {
   let herostyle = {
     backgroundImage: "url(heroimg.jpeg)",
@@ -18,13 +17,7 @@ export default function Hero({session}) {
     <div className="hero relative flex justify-center 
     items-center flex-wrap w-full  py-20 font-(verdana) font-bold
      " style={herostyle}>
-      { 
-        session&&
-        <div>
-            <Profile user={session?.user}></Profile>
-            <Logout session={session}/>
-        </div>
-      }
+  
         <div className="contner m-4 z-3">
           <h1 className="text-[2rem] z-3 dark:text-accent text-emerald-800 
           md:text-6xl rowdies-bold m-3  stroke-4 ">ZMERCADO</h1>
@@ -113,12 +106,6 @@ function Sponsors() {
 
 
 
-
-        <div>
-
-          <ProductBox product={{title:'title',desc:'lorem ipsum dolor sit amet constrecteur'}} />
-
-        </div>
       </div>
      
     </div>

@@ -3,6 +3,7 @@ import { authClient } from "@/utils/authClient"
 import axios from "axios" 
 
 export default async function InfoAction ({request}) {
+    
     let {data} = await authClient.getSession()
 
     let formData = await request.formData()
@@ -30,17 +31,17 @@ export default async function InfoAction ({request}) {
  
 
     try{
-        let response =await axios.get('http://localhost:1000/auth/token',{withCredentials:true})
+        let response =await axios.get(`${import.meta.env.VITE_API_URL}/auth/token`,{withCredentials:true})
         let token =  response?.data.token
-        response = await axios.post('http://localhost:1000/add_info',postData,{
+        response = await axios.post(`${import.meta.env.VITE_API_URL}/add_info`,postData,{
             withCredentials:true,
             headers:{
                 "Authorization":`Bearer ${token}`,   
             }
         })
         if (response.status==200){
-            authClient.signOut({});
-            return redirect('/auth/login')
+            // authClient.signOut({});
+            return redirect('/verify_email')
         }
     }catch(error){
         if (error.status==403){
