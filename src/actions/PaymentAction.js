@@ -18,7 +18,6 @@ export default async function paymentAction({ request }) {
         return { errors };
     }
     const data = { name, email, phone:'0'+phone, address,city,paymentM ,amount,productIds };
-    console.log(productIds)
     try {
         const response = await api.post(`/payment/${paymentM}/create`,data,
             {
@@ -39,7 +38,6 @@ export default async function paymentAction({ request }) {
         return redirect(checkoutUrl.get(paymentM))
     }
     catch(e){
-        console.log('err',e)
         if (e?.status === 400) {
             errors.message = 'invalid phone number please enter a valid phone number start with 9 or 7'; 
             return { errors };

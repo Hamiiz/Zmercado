@@ -12,9 +12,6 @@ import { ToastContainer,toast } from "react-toastify";
 
 export default function SignUp() {
 
-  // const [username, setUsername] = useState('')
-  // const [email,setEmail]= useState('')
-  // const [password, setPassword] = useState('')
   let fetcher = useFetcher() 
 
 
@@ -44,7 +41,7 @@ export default function SignUp() {
 
             <input
               // onInput= {(e)=>{setEmail(e.target.value)}}
-              className={`forminput email required`}
+              className={`forminput p-2 email required`}
               type="email"
               placeholder="Enter your Email"
               name="email"
@@ -54,7 +51,7 @@ export default function SignUp() {
             <input
               // onInput={(e)=>setUsername(e.target.value)}
               // style={{marginBottom:errors?.username||usernameStatus=='taken'?-0.5+'rem':''}}
-              className={`forminput usename required`}
+              className={`forminput p-2 usename required`}
               type="text"
               placeholder="Enter your Username"
               name="username"
@@ -65,7 +62,7 @@ export default function SignUp() {
               // onInput={(e)=>setPassword(e.target.value)}
               type="password"
               name="password"
-              className={`forminput password required `}
+              className={`forminput p-2 password required `}
               placeholder="Enter Password"
               required
             />
@@ -75,7 +72,7 @@ export default function SignUp() {
               name="cpassword"
               // style={{marginBottom:errors?.password?-0.5+'rem':0}}
               required
-              className={`forminput cpassword  required`}
+              className={`forminput p-2 cpassword  required`}
               placeholder="Confirm Password"
               
             />

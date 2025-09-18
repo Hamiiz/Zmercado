@@ -46,7 +46,7 @@ const router = createBrowserRouter([
                 path:'/auth/login'
                 ,Component:Login,
                 action:LoginAction,
-                loader:loginLoader
+                // loader:loginLoader
             }
             ,
             {
@@ -110,7 +110,8 @@ const router = createBrowserRouter([
     {
         path:'/paymentCheckout',
         Component: PaymentChecout,
-        action: paymentAction
+        action: paymentAction,
+        loader:checkoutLoader
     }
     ,
     {
@@ -126,7 +127,6 @@ export default router
 
 async function infoLoader(){
     let token =  await getToken()
-    console.log('infoad', token)
     if (!token){
         return redirect('/auth/login')
     }
@@ -135,10 +135,12 @@ async function infoLoader(){
     const {data} =await authClient.getSession()
     let name = data?.user?.name || ''  
         if (roles!=null &&(name.length>0)){
+    
             const emailVerified = data?.user?.emailVerified
+            console.info('emailVerified',emailVerified)
             if(emailVerified){
 
-                return redirect('/')
+                return redirect('/products')
             }else{
                 return  redirect('/verify_email')
 
@@ -151,7 +153,7 @@ async function infoLoader(){
 async function loginLoader(){
     let {data} :any =await authClient.getSession()
     if (data?.session){
-        return redirect('/')
+        return redirect('/products')
     }
 
     
@@ -171,5 +173,19 @@ async function refetchLoader({request}){
         return redirect(`/auth/login`);
     }
     
+
+}
+
+
+async function checkoutLoader(){
+    const isLogged = await authClient.getSession() 
+
+    if (isLogged?.data == null){
+        return redirect(`${import.meta.env.VITE_BASE_URL}/auth/login`)
+
+    }else{
+        return null
+    }
+
 
 }

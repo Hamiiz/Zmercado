@@ -35,7 +35,6 @@ export default async function productAction({ request }) {
             },
         });
 
-        console.log(response?.data);
         return redirect('/products')
     } catch (error) {
         console.log("Upload error:", error.message);

@@ -15,10 +15,10 @@ type jwtType =  {
 }
 export async function getToken(){
     try{
-        let response =await axios.get('http://localhost:1000/auth/token',{withCredentials:true})
+        let response =await axios.get(`${import.meta.env.VITE_API_URL}/auth/token`,{withCredentials:true})
         return response.data.token
     }catch(error:any){
-        console.log('unAuthorized!')
+        console.log(error)
         return null
       
     }

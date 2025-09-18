@@ -9,10 +9,8 @@ export default function PaymentChecout() {
   const location = useLocation();
   const checkItems = location.state?.items || [];
   const fetcher = useFetcher()
-    console.log('checkedItems',checkItems)
     if (fetcher.data?.errors) {
       const errorMsg = fetcher.data?.errors?.message;
-      console.log(errorMsg)
         if (!toast.isActive(errorMsg)) {
           toast.error(errorMsg, { toastId: errorMsg });
         }

@@ -51,8 +51,7 @@ export default async function SignupAction ({request}) {
         return {errors}
     }
     if (!error){
-        console.log(data)
-    return redirect('/add_info')
+        return redirect('/add_info')
     }else{
         return {errors}
     }
@@ -66,9 +65,5 @@ export default async function SignupAction ({request}) {
     }
 
 }
-// async function EmailIsValid(email){
-//     return false
-
-// }
 
     

@@ -21,9 +21,6 @@ input[type='submit']{
     position: relative;
     background-color: mediumseagreen;
     color: white;
-    width: fit-content;
-
-    padding:    1rem 3rem;
     font-size: .7rem;
     margin: 1rem 0;
     position: relative;

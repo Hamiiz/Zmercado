@@ -19,10 +19,9 @@ import {
 export default function AddInfo() {
   let fetcher = useFetcher();
   let { session } = useSession();
-
   useEffect(() => {
-    if (fetcher.data?.message) {
-      const errorMsg = fetcher.data.message;
+    if (fetcher.data?.error) {
+      const errorMsg = fetcher.data.error.message;
       if (!toast.isActive(errorMsg)) {
         toast.error(errorMsg, { toastId: errorMsg });
       }

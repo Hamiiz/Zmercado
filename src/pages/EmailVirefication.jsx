@@ -11,21 +11,7 @@ export default function VerificationPage() {
   const navigate = useNavigate();
   let fetcher = useFetcher();
   const error = fetcher.data?.error;
-  // useEffect(()=>{
-  //     (async ()=>{
-  //         try{
-  //             //REPLACE WITH STATE MANAGEMENT
-  //             //eslint-ignore-unused-vars
-  //             let token = await (await axios.get('http://localhost:1000/auth/token',{withCredentials:true})).data?.token
 
-  //             }
-
-  //         catch (err){
-  //             toast.error(err.message)
-  //         }
-  //     })()
-
-  // },[session,navigate])
 
   useEffect(() => {
     if (error) {
@@ -37,7 +23,7 @@ export default function VerificationPage() {
   }, [error]);
 
   if (fetcher?.data?.success) {
-    navigate("/");
+    navigate("/products");
   }
 
   return (
