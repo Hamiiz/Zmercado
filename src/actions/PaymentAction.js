@@ -14,7 +14,7 @@ export default async function paymentAction({ request }) {
     const paymentM = formData.get("paymentmethod");
     const errors = {}
     if (phone?.length != 9 ) {
-        errors.message = 'invalid phone number please enter a valid phone number, start with 9 or 7';
+        errors.message = 'invalid phone Number please enter a valid phone number, start with 9 or 7';
         return { errors };
     }
     const data = { name, email, phone:'0'+phone, address,city,paymentM ,amount,productIds };
