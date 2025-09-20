@@ -30,27 +30,22 @@ export default async function SignupAction ({request}) {
  
 
 
-    let {data,error} = 	await authClient.signUp.email({
+    let response = 	await authClient.signUp.email({
         email:email,
         password:password,
         username:username,
-        fetchOptions: {
-            
-            onError: (ctx) => {
-                ctx.error?.message?
-                errors.message =  ctx.error.message:
+     
+    });
+    const {data,error} = response
+    if (error){
+        console.log('err',error)
+        error?.message?
+                errors.message =  error.message:
                 errors.message = 'Server Error Occured'
                 return{errors}
-             
-            },	
-        },
-    });
-    const sessionData = await authClient.getSession()
-    if(!sessionData?.data?.user){
-        errors.message='There is Another Account with this email'
-        return {errors}
     }
-    if (!error){
+
+    else if (!error){
         return redirect('/add_info')
     }else{
         return {errors}
