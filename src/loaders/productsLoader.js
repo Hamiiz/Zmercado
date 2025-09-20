@@ -2,7 +2,7 @@ import api from "@/api/axiosInstance"
 export default async function ProductLoader(){
     //imitate server delays
     
-    await sleep(1000);
+
     try{
         const {data}  =await api.get('/getProducts?')
         return data
@@ -12,7 +12,5 @@ export default async function ProductLoader(){
     }
 
 }
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
+
   
