@@ -46,7 +46,7 @@ export default async function SignupAction ({request}) {
     }
 
     else if (!error){
-        console.success('successfull signup')
+        console.info('successfull signup')
         return redirect('/add_info')
     }else{
         return {errors}
