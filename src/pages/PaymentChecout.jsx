@@ -87,7 +87,7 @@ export default function PaymentChecout() {
               className="w-[1rem] "
               name="paymentmethod"
               value="telebirr"
-              defaultChecked
+              disabled
 
             />
             <span> Telebirr</span>
@@ -99,6 +99,7 @@ export default function PaymentChecout() {
               className="w-[1rem] "
               name="paymentmethod"
               value="chapa"
+              defaultChecked
               
             />{" "}
             <span>Chapa</span>
