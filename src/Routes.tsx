@@ -31,10 +31,7 @@ const router = createBrowserRouter([
     {
         path:'/',
         Component:Homepage, 
-        loader:async()=>{
-            let token = await getToken()
-            return token
-        }
+        
         
     },
     {

@@ -34,6 +34,7 @@ export default async function SignupAction ({request}) {
         email:email,
         password:password,
         username:username,
+      
      
     });
     const {data,error} = response
