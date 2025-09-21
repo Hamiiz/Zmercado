@@ -3,14 +3,11 @@ import  { Features,Sponsors,Footer } from '../components/Hero'
 import CustomButton from '../components/customButton'
 import Hero from '../components/Hero'
 import { NavLink } from 'react-router-dom'
-import {useSession} from '../hooks/useSession'
 // import '../assets/HomeView.css'
 
 
 
 export default function Homepage(){
-    //eslint-disable-next-line
-    let {session,isPending} = useSession()
         
 
     const button_style={
@@ -26,7 +23,7 @@ export default function Homepage(){
 
     return(
         <>
-            <Hero session={session} />
+            <Hero  />
             <Features />
             <Sponsors />
             <NavLink to={'/auth/signup'} ><CustomButton text="Join us" className={button_style}/></NavLink>

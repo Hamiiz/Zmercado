@@ -3,8 +3,7 @@ import { NavLink} from 'react-router-dom'
 import Logout from "./logout";
 
 
-//eslint-disable-next-line
-export default function Hero({session}) {
+export default function Hero() {
   let herostyle = {
     backgroundImage: "url(heroimg.jpeg)",
     backgroundSize: "cover",
