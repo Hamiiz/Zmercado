@@ -1,4 +1,4 @@
-import { createBrowserRouter, redirect } from "react-router-dom";
+import { createBrowserRouter, redirect,Outlet } from "react-router-dom";
 import Homepage from './pages/HomeView'
 import Login from "./pages/loginView";
 import SignUp from "./pages/SignupView";
@@ -24,98 +24,90 @@ import ItemPage from "./pages/ItemPage";
 import itemLoader from "./loaders/itemLoader";
 import PaymentChecout from "./pages/PaymentChecout";
 import paymentAction from "./actions/PaymentAction";
-
+import GlobalErrorBoundary from "./pages/errors/GlobalErrorBoundary";
+import GlobalHydrateFallback from "./pages/layouts/GlobalHydrateFallback";
 
 const router = createBrowserRouter([
 
     {
-        path:'/',
-        Component:Homepage, 
-        
-        
-    },
-    {
-        path:'/auth',
-        Component:Auth,
-        children:[
-                
+        id: 'root',
+        path: '/',
+        Component: Outlet,
+        errorElement: <GlobalErrorBoundary />,
+        HydrateFallback: GlobalHydrateFallback,
+        children: [
             {
-                path:'/auth/login'
-                ,Component:Login,
-                action:LoginAction,
-                // loader:loginLoader
-            }
-            ,
-            {
-                path:'/auth/signup'
-                ,Component:SignUp,
-                action:SignupAction,
-                
-                
-            }
-            
-        ]
-    },
-    {
-        path:'/refetch-token',
-        loader:refetchLoader,
-        element:<h1>loading</h1>
-    },
-    {
-        path:'/add_info',
-        Component: AddInfo,
-        action:InfoAction,
-        loader:infoLoader
-    
-        
-    },
-    {
-        path:'/verify_email',
-        Component: VerificationPage,
-        action:VerifyAction,
-        loader: HandleOtp
-        
-    },
-    {
-        path:'/products',
-        Component: ProductsLayout,
-
-        children:[
-            {
-                index:true,
-                Component:ProductPage,
-                loader:ProductLoader,
-                HydrateFallback: ProductFallBack,
-
+                index: true,
+                Component: Homepage,
             },
             {
-                path:'sell',
-                Component:AddProducts
-                ,action:productAction
-
+                path: 'auth',
+                Component: Auth,
+                children: [
+                    {
+                        path: 'login',
+                        Component: Login,
+                        action: LoginAction,
+                        // loader:loginLoader
+                    },
+                    {
+                        path: 'signup',
+                        Component: SignUp,
+                        action: SignupAction,
+                    }
+                ]
             },
             {
-                path:'item',
-                Component: ItemPage,
-                loader: itemLoader
-
+                path: 'refetch-token',
+                loader: refetchLoader,
+                element: <h1>loading</h1>
+            },
+            {
+                path: 'add_info',
+                Component: AddInfo,
+                action: InfoAction,
+                loader: infoLoader
+            },
+            {
+                path: 'verify_email',
+                Component: VerificationPage,
+                action: VerifyAction,
+                loader: HandleOtp
+            },
+            {
+                path: 'products',
+                Component: ProductsLayout,
+                children: [
+                    {
+                        index: true,
+                        Component: ProductPage,
+                        loader: ProductLoader,
+                        HydrateFallback: ProductFallBack,
+                    },
+                    {
+                        path: 'sell',
+                        Component: AddProducts,
+                        action: productAction
+                    },
+                    {
+                        path: 'item',
+                        Component: ItemPage,
+                        loader: itemLoader
+                    }
+                ]
+            },
+            {
+                path: 'paymentCheckout',
+                Component: PaymentChecout,
+                action: paymentAction,
+                loader: checkoutLoader
+            },
+            {
+                path: 'payments/success/:txn_id',
+                element: <h1>success </h1>,
             }
-
         ]
-
     },
-    {
-        path:'/paymentCheckout',
-        Component: PaymentChecout,
-        action: paymentAction,
-        loader:checkoutLoader
-    }
-    ,
-    {
-        path:'/payments/success/:txn_id',
-        element:<h1>success </h1>,
-    
-    }
 ])
 export default router
 
@@ -186,3 +178,27 @@ async function checkoutLoader(){
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
