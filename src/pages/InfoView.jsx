@@ -66,7 +66,9 @@ export default function AddInfo() {
           <Label htmlFor="phone" className=" text-xs float-left ">
             Enter your phone number
           </Label>
-          <Input className="my-3 " id="phone" type="tel" name="phone" />
+          <Input className="my-3 " id="phone" 
+          defaultValue={900123456}
+          type="tel" name="phone" />
           <Select name="select" required>
             <SelectTrigger className="w-full scheme-light-dark ">
               <SelectValue placeholder="What are you doing here" />
